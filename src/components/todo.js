@@ -13,6 +13,7 @@ const Todo = ({ todo, handleAction, index, actionIcon, isComplete }) => {
         {todo}
       </span>
       <img
+        alt="todo-action"
         onClick={() => handleAction(index)}
         className={tickIcon}
         height={15}

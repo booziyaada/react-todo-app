@@ -1,5 +1,4 @@
-import logo from "./logo.svg";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TodosList from "./components/todos-list";
 import AddTodo from "./components/add-todo";
 import "./App.css";
