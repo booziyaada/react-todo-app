@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import { useState, useEffect } from "react";
+import TodosList from "./components/todos-list";
+import AddTodo from "./components/add-todo";
+import "./App.css";
+import CompletedTodos from "./components/completed-todos";
 function App() {
+  const [todos, setTodos] = useState(["Learn React", "Build Apps"]);
+  const [completedTodos, setCompletedTodos] = useState([]);
+
+  const addTodo = (newTodo) => {
+    setTodos([...todos, newTodo]);
+  };
+
+  const removeTodo = (index) => {
+    const filteredTodos = completedTodos.filter((todo, i) => index !== i);
+    setCompletedTodos(filteredTodos);
+  };
+
+  const markTodoAsDone = (index) => {
+    const todoToBeMarked = todos[index];
+    const filteredTodos = todos.filter((todo, i) => index !== i);
+    setCompletedTodos([...completedTodos, todoToBeMarked]);
+    setTodos(filteredTodos);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "30px" }} className="App root">
+      <AddTodo addTodo={addTodo} />
+      <CompletedTodos completedTodos={completedTodos} removeTodo={removeTodo} />
+      <TodosList todos={todos} markTodoAsDone={markTodoAsDone} />
     </div>
   );
 }

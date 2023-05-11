@@ -1,0 +1,18 @@
+.todoLabel {
+    font-size: 32px;
+    margin-right: 8px;
+    width: 100%;
+}
+
+.todoWrapper {
+    display: flex;
+    margin: 15px 0px;
+    max-width: 350px;
+}
+
+.tickIcon {
+    height: 32px;
+}
+.tickIcon:hover {
+    cursor: pointer;
+}
