@@ -1,8 +1,11 @@
 import React from "react";
 import Todo from "./todo";
 import DeleteIcon from "./delete.svg";
+import { useSelector } from "react-redux";
+import { completedTodosSelector } from "../redux/todoSlice";
 
-const CompletedTodos = ({ removeTodo, completedTodos }) => {
+const CompletedTodos = () => {
+  const completedTodos = useSelector(completedTodosSelector);
   return (
     <div>
       {completedTodos.map((todo, index) => {
@@ -12,7 +15,6 @@ const CompletedTodos = ({ removeTodo, completedTodos }) => {
             key={index}
             index={index}
             todo={todo}
-            handleAction={removeTodo}
             actionIcon={DeleteIcon}
           />
         );

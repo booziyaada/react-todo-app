@@ -1,33 +1,23 @@
-import { useState } from "react";
 import TodosList from "./components/todos-list";
 import AddTodo from "./components/add-todo";
 import "./App.css";
 import CompletedTodos from "./components/completed-todos";
+import { useDispatch } from "react-redux";
+import { addTodo as addTodoAction } from "./redux/todoSlice";
+
 function App() {
-  const [todos, setTodos] = useState(["Learn React", "Build Apps"]);
-  const [completedTodos, setCompletedTodos] = useState([]);
+  // the input of useSelector is a selector function.
 
+  const dispatch = useDispatch();
   const addTodo = (newTodo) => {
-    setTodos([...todos, newTodo]);
-  };
-
-  const removeTodo = (index) => {
-    const filteredTodos = completedTodos.filter((todo, i) => index !== i);
-    setCompletedTodos(filteredTodos);
-  };
-
-  const markTodoAsDone = (index) => {
-    const todoToBeMarked = todos[index];
-    const filteredTodos = todos.filter((todo, i) => index !== i);
-    setCompletedTodos([...completedTodos, todoToBeMarked]);
-    setTodos(filteredTodos);
+    dispatch(addTodoAction(newTodo));
   };
 
   return (
     <div style={{ padding: "30px" }} className="App root">
       <AddTodo addTodo={addTodo} />
-      <CompletedTodos completedTodos={completedTodos} removeTodo={removeTodo} />
-      <TodosList todos={todos} markTodoAsDone={markTodoAsDone} />
+      <CompletedTodos />
+      <TodosList />
     </div>
   );
 }

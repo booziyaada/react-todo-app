@@ -1,8 +1,12 @@
 import React from "react";
 import Todo from "./todo";
 import TickIcon from "./tick.svg";
+import { todosSelector } from "../redux/todoSlice";
+import { useSelector } from "react-redux";
 
-const TodosList = ({ markTodoAsDone, todos }) => {
+const TodosList = () => {
+  const todos = useSelector(todosSelector);
+
   return (
     <div>
       {todos.map((todo, index) => {
@@ -13,7 +17,6 @@ const TodosList = ({ markTodoAsDone, todos }) => {
             index={index}
             todo={todo}
             actionIcon={TickIcon}
-            handleAction={markTodoAsDone}
           />
         );
       })}
